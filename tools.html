@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cow Tool | Tools</title>
+    <meta name="description" content="Cow Tool is your place to find useful tools!">
+    <meta name="keywords" content="Cow Tool, python, multitool, multi-tool, inkygt, inky, cowtool">
+    <meta name="author" content="Cow Team">
+    <meta property="og:title" content="Cow Tool | Home">
+    <meta property="og:description" content="Cow Tool is your place to find useful tools!">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:url" content="https://cowtool.lol/">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="/css/toolspage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <style>
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            padding: 20px;
+            z-index: 1000;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+
+
+        .popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .popup .copy-btn {
+            margin-top: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .popup .copy-btn:hover {
+            background-color: #222;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        pre {
+            background-color: #2d2d2d;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code[class*="language-"],
+        pre[class*="language-"] {
+            color: #d4d4d4;
+            background: none;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 1em;
+            text-align: left;
+            white-space: pre;
+            word-spacing: normal;
+            word-break: normal;
+            word-wrap: normal;
+            line-height: 1.5;
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+            tab-size: 4;
+            -webkit-hyphens: none;
+            -moz-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+        }
+
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+            color: #999;
+        }
+
+        .token.punctuation {
+            color: #ccc;
+        }
+
+        .namespace {
+            opacity: 0.7;
+        }
+
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+            color: #f92672;
+        }
+
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+            color: #a6e22e;
+        }
+
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string {
+            color: #66d9ef;
+            background: none;
+        }
+
+        .token.atrule,
+        .token.attr-value,
+        .token.keyword {
+            color: #f92672;
+        }
+
+        .token.function,
+        .token.class-name {
+            color: #e6db74;
+        }
+
+        .token.regex,
+        .token.important,
+        .token.variable {
+            color: #fd971f;
+        }
+
+        .token.important,
+        .token.bold {
+            font-weight: bold;
+        }
+
+        .token.italic {
+            font-style: italic;
+        }
+
+        .token.entity {
+            cursor: help;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">Cow Tool</a>
+            <ul class="navbar-menu">
+                <li class="navbar-item"><a href="/" class="navbar-link">Home</a></li>
+                <li class="navbar-item"><a href="/tools.html" class="navbar-link">Tools</a></li>
+                <li class="navbar-item"><a href="/index.html#credits" class="navbar-link">Credits</a></li>
+                <li class="navbar-item"><a href="https://discord.gg/5jpsgcU6mC" class="navbar-link">Join Discord</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <div class="hero" style="margin-bottom: 50px;">
+            <h1>Verified & Virus Free!</h1>
+            <p>All tools have been verified to ensure your safety and security.</p>
+        </div>
+
+        <div class="category">
+            <h2>Discord Tools</h2>
+            <div class="tool-grid">
+                <div class="tool-box">
+                    <div style="font-size: large; margin-bottom: 15px;">
+                        <p style="margin: 0; text-align: left;">Uploaded by: Moo</p>
+                        <p style="margin: 0; text-align: left;">Langauge: Python <i class="fab fa-python"></i></p>
+                    </div>
+                    <h3>Status Changer</h3>
+                    <p>Changes the status of your Discord Profile every 2 seconds!</p>
+                    <a class="btn" onclick="showpopup()" style="cursor: pointer;">See Code</a>
+                </div>
+                <div class="tool-box">
+                    <div style="font-size: large; margin-bottom: 15px;">
+                        <p style="margin: 0; text-align: left;">Uploaded by: Moo</p>
+                        <p style="margin: 0; text-align: left;">Langauge: Python <i class="fab fa-python"></i></p>
+                    </div>
+                    <h3>Cow Multi-Tool</h3>
+                    <p>An amazing multi-tool for Cybersecurity inside Discord!</p>
+                    <a class="btn" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">Being Developed</a>
+                </div>
+                <div class="tool-box">
+                    <div style="font-size: large; margin-bottom: 15px;">
+                        <p style="margin: 0; text-align: left;">Uploaded by: Unknown</p>
+                        <p style="margin: 0; text-align: left;">Langauge: Unknown</p>
+                    </div>
+                    <h3>Placeholder</h3>
+                    <p>This is placeholder, expect something new here...</p>
+                    <a class="btn" style="opacity: 0.5; cursor: not-allowed; pointer-events: none;">See Code</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay" id="overlay" onclick="hidepopup()"></div>
+        <div class="popup" id="popup">
+            <pre><code class="language-python">
+import requests
+import time
+                
+TOKEN = 'TOKEN HERE'
+API_ENDPOINT = 'https://discord.com/api/v9'
+                
+statuses = [
+    "Made By Moo",
+    "Cow Tool On Top",
+    "Hello Everyone!"
+    # you can add more!!!
+]
+                
+def changestatus(status):
+    url = f"{API_ENDPOINT}/users/@me/settings"
+    headers = {
+        "Authorization": f"{TOKEN}",
+        "Content-Type": "application/json"
+    }
+   data = {
+            "custom_status": {
+            "text": status
+        }
+    }
+    response = requests.patch(url, headers=headers, json=data)
+                
+while True:
+     for status in statuses:
+        changestatus(status)
+        time.sleep(2)
+    </code></pre>
+            <button class="copy-btn" onclick="copycode()">Copy</button>
+        </div>
+
+        <div class="category">
+            <h2>Game Tools</h2>
+            <div class="tool-box">
+                <h1 style="color: rgb(148, 145, 145);">Coming Soon!</h1>
+            <!-- <div class="tool-grid">
+                <div class="tool-box">
+                    <h3>Tool 4</h3>
+                    <p>Description of Tool 4.</p>
+                </div>
+                <div class="tool-box">
+                    <h3>Tool 5</h3>
+                    <p>Description of Tool 5.</p>
+                </div>
+                <div class="tool-box">
+                    <h3>Tool 6</h3>
+                    <p>Description of Tool 6.</p>
+                </div>
+            </div> -->
+            </div>
+        </div>
+
+        <div class="category">
+            <h2>Other</h2>
+            <div class="tool-box">
+                <h1 style="color: rgb(148, 145, 145);">Coming Soon!</h1>
+                <!--
+                    <div class="tool-grid">
+                    <div class="tool-box">
+                        <h3>Tool 7</h3>
+                        <p>Description of Tool 7.</p>
+                    </div>
+                    <div class="tool-box">
+                        <h3>Tool 8</h3>
+                        <p>Description of Tool 8.</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Cow Tool. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="/js/particles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script>
+        function showpopup() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hidepopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function copycode() {
+            const codeBlock = document.querySelector('pre code');
+            const range = document.createRange();
+            range.selectNode(codeBlock);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+</body>
+</html>
